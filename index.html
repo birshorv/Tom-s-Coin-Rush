@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1622">
+  <title>Tom's Coin Rush</title>
+  <script src="https://www.youtube.com/game_api/v1"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+  <canvas id="game" aria-label="Driving game: steer Tom's car to collect coins and avoid traffic"></canvas>
+  <div id="hud">
+    <div class="hud-left"><span class="hud-label">RUN COINS</span><span id="coinsHud">◉ 0</span><span id="healthHud">♥ ♥ ♥</span></div>
+    <div class="hud-right"><span class="hud-label">DISTANCE</span><span id="distanceHud">0 m</span><button id="pauseButton" aria-label="Pause game">Ⅱ</button></div>
+  </div>
+  <div id="overlay" class="overlay">
+    <section class="card" id="menu">
+      <div class="topline"><span class="brand-mark" aria-hidden="true">T<span>●</span></span><span>TWO ROADS. ONE DRIVER.</span></div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-sun"></div><div class="hero-road"><i></i><i></i></div><div class="hero-car"><b class="hero-ear left"></b><b class="hero-ear right"></b><b class="hero-head">•ᴥ•</b><b class="hero-windshield"></b><b class="hero-lamp left"></b><b class="hero-lamp right"></b></div><span class="hero-coin coin-one">✦</span><span class="hero-coin coin-two">✦</span><span class="hero-coin coin-three">✦</span></div>
+      <div class="menu-copy"><div class="eyebrow">THE ROAD IS YOURS</div><h1>Tom's <strong>Coin Rush<span>.</span></strong></h1><p>Collect coins. Dodge traffic. Unlock the night drive.</p></div>
+      <div class="stage-list" role="group" aria-label="Choose a racing stage"><button class="stage active" id="stageClassic"><span class="stage-number">01</span><span class="stage-details"><strong>Classic Circuit</strong><small>Sunlit road · Start here</small></span><span class="stage-status">SELECTED</span></button><button class="stage locked" id="stageNeon" disabled><span class="stage-number">02</span><span class="stage-details"><strong>Neon Highway</strong><small id="unlockText">Reach 500 m to unlock</small></span><span class="stage-status" id="stageNeonStatus">LOCKED</span></button></div><button class="primary" id="playButton">RACE CLASSIC CIRCUIT <span>↗</span></button>
+      <button class="secondary" id="garageButton">GARAGE <span><span id="bankMenu">0</span> COINS →</span></button>
+      <small>SWIPE OR DRAG TO STEER <span>·</span> A / D OR ARROW KEYS</small>
+    </section>
+    <section class="card hidden" id="garage">
+      <div class="topline"><span class="brand-mark" aria-hidden="true">T<span>●</span></span><span>THE WORKSHOP</span></div>
+      <div class="eyebrow section-label">LEVEL UP YOUR RIDE</div><h2>The garage<span class="period">.</span></h2>
+      <p class="wallet">AVAILABLE <strong>◉ <span id="bankGarage">0</span></strong></p>
+      <div class="upgrade"><div><small>01 / PICKUP</small><strong>Coin magnet</strong><span>Collect from farther away</span></div><button id="buyMagnet">Buy</button></div>
+      <div class="upgrade"><div><small>02 / DURABILITY</small><strong>Strong bumper</strong><span>Start with more hearts</span></div><button id="buyBumper">Buy</button></div>
+      <div class="upgrade"><div><small>03 / PERFORMANCE</small><strong>Turbo boost</strong><span>Fill the boost meter faster</span></div><button id="buyTurbo">Buy</button></div>
+      <p class="tiny" id="garageMessage"></p><button class="secondary" id="garageBack">← BACK TO MENU</button>
+    </section>
+    <section class="card hidden" id="results">
+      <div class="topline"><span class="brand-mark" aria-hidden="true">T<span>●</span></span><span id="resultBadge">RUN COMPLETE</span></div>
+      <div class="eyebrow section-label">THE ROAD GOES ON</div><h2 id="resultTitle">Nice drive!</h2><div class="results-data"><p id="resultStats"></p><p id="bestStats"></p></div>
+      <button class="primary" id="retryButton">RACE AGAIN <span>↗</span></button><button class="secondary" id="resultsGarage">GARAGE <span>→</span></button><button class="text-button" id="resultsMenu">MAIN MENU</button>
+    </section>
+    <section class="card hidden" id="paused">
+      <div class="topline"><span class="brand-mark" aria-hidden="true">T<span>●</span></span><span>DRIVE ON HOLD</span></div>
+      <div class="eyebrow section-label">TAKE YOUR TIME</div><h2>Paused<span class="period">.</span></h2><p>Catch your breath. The road will wait.</p><button class="primary" id="resumeButton">RESUME <span>↗</span></button><button class="secondary" id="pauseMenu">MAIN MENU</button>
+    </section>
+  </div>
+  <div id="toast" aria-live="polite"></div>
+  <div id="bottom"><div class="progress"><div id="boostFill"></div></div><span id="boostLabel">BOOST · COLLECT TO CHARGE</span><button id="boostButton" disabled>BOOST ↗</button></div>
+</main>
+<script src="game.js"></script>
+</body></html>
